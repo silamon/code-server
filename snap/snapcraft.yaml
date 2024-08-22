@@ -79,6 +79,7 @@ parts:
       - build-essential
       - pkg-config
       - python3
+      - libkrb5-dev
     override-build: |
       if [ -n "${http_proxy-}" ]; then
         yarn config set httpProxy "${http_proxy}"
@@ -99,15 +100,16 @@ parts:
       - git-all # Add submodules etc?
       - openssh-client
       - screen
+      - libatomic1
   env-wrapper:
     plugin: dump
     source: src/
   nodejs:
     plugin: dump
     source:
-      - on amd64: https://nodejs.org/dist/v18.18.0/node-v18.18.0-linux-x64.tar.gz
-      - on arm64: https://nodejs.org/dist/v18.18.0/node-v18.18.0-linux-arm64.tar.gz
-      - on armhf: https://nodejs.org/dist/v18.18.0/node-v18.18.0-linux-armv7l.tar.gz
+      - on amd64: https://nodejs.org/dist/v20.16.0/node-v20.16.0-linux-x64.tar.gz
+      - on arm64: https://nodejs.org/dist/v20.16.0/node-v20.16.0-linux-arm64.tar.gz
+      - on armhf: https://nodejs.org/dist/v20.16.0/node-v20.16.0-linux-armv7l.tar.gz
     override-stage: |
       npm install -g yarn
       snapcraftctl stage
